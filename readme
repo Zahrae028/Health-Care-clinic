@@ -1,0 +1,174 @@
+Unity Care Clinic – Backend (PHP 8.5 Procedural & MySQLi)
+Project Overview
+
+Unity Care Clinic’s backend aims to provide a solid foundation for managing key clinical entities such as patients, departments, and doctors. This first version is built using PHP 8.5 (procedural) and MySQLi, focusing on simplicity, maintainability, and clarity for an initial release.
+
+A central component of this backend is the administration dashboard, which offers administrators a global overview of the clinic’s system through key statistics, charts, and activity summaries. This facilitates better decision-making and efficient supervision of operations.
+
+Core Features
+1. Entity Management
+
+Full CRUD operations for major clinic entities:
+
+Patients
+
+Doctors
+
+Departments
+
+Additional requirements:
+
+Entity relationship management (e.g., assign doctors to departments)
+
+Clean interfaces for creating, listing, editing, and deleting records
+
+2. Dashboard & Statistics
+
+A dynamic dashboard will display pertinent system information, including:
+
+Total doctor count, specialties, department performance, etc.
+
+Interactive charts using Chart.js
+
+Optional dynamic refresh for live updates
+
+3. Internationalization (i18n)
+
+Multilingual support via dedicated language files:
+
+fr.php, en.php, es.php, etc.
+
+Users can switch language directly from the dashboard
+
+4. Documentation
+
+All scripts must be properly documented:
+
+Internal comments explaining logic
+
+A complete README (installation, project structure, prerequisites)
+
+Clear and organized folder structure
+
+5. Optional Enhancements (Bonus)
+
+AJAX integration for smooth, asynchronous operations
+
+Modal-based forms for improved UX
+
+Advanced charting and interactive analytics
+
+User Stories
+ID	Description
+US01 – Patient Management	Admin can create, edit, delete, and list patients
+US02 – Department Management	Admin can manage departments
+US03 – Doctor Management	Admin can manage doctors and assign them to departments
+US04 – Dynamic Statistics	Admin can view dashboard metrics and charts
+US05 – Internationalization	User can change the interface language
+US06 – Smooth Navigation	AJAX enables faster, asynchronous interactions
+Project Timeline
+
+Start Date: December 04, 2025 at 10:00
+
+Deadline: December 18, 2025 before 17:00
+
+Work Format: Individual
+
+Duration: 6 days
+
+Evaluation Requirements
+Presentation (10 minutes)
+
+5 minutes: design demonstration
+
+10 minutes: code explanation
+
+Additional:
+
+1-hour classroom challenge + 15-minute quiz (QCM)
+
+Deliverables
+
+Jira task planning link
+
+GitHub repository containing:
+
+README
+
+All backend PHP scripts
+
+SQL schema / script
+
+ERD diagram
+
+UML use-case diagram
+
+Delivery report (write-up)
+
+Hosting link (optional)
+
+Performance Criteria
+Response Time
+
+Ensure fast and acceptable system-wide response times
+
+Memory Usage
+
+Optimize memory consumption for server efficiency
+
+SQL Optimization
+
+Reduce query execution time
+
+Avoid slow operations and bottlenecks
+
+Security Guidelines (PHP Procedural + MySQLi)
+SQL Injection Prevention
+
+Use prepared statements
+
+Avoid inline SQL with user input
+
+Data Validation & Sanitization
+
+Validate all incoming data
+
+Escape/sanitize outputs to avoid XSS attacks
+
+XSS Protection
+
+Use filtering functions when displaying user-generated content
+
+Best Practices for PHP Procedural Architecture
+
+DRY Principle: avoid repeating logic; use shared functions
+
+Modularity: separate concerns into reusable modules/files
+
+Naming Conventions: consistent and descriptive naming
+
+Comments: clear documentation for future developers
+
+Error Handling: meaningful error reporting and logging
+
+Database Connection Standards
+
+Store credentials securely (never hard-coded in public files)
+
+Properly open/close database connections
+
+Use prepared statements for all dynamic queries
+
+Implement robust connection-error handling
+
+Avoid unnecessary persistent connections
+
+Technologies Used
+
+PHP 8.5 (Procedural)
+
+MySQLi
+
+Chart.js
+
+HTML/CSS/JavaScript (optional: AJAX, modals)
