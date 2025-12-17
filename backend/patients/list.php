@@ -21,7 +21,7 @@ $result = mysqli_query($conn, "SELECT * FROM patients"); ?>
         
         
         <div class="main">
-        <button id="addPatient">add a patient</button>
+        <!-- <button id="addPatient">add a patient</button> -->
         <h1>Patients</h1>
 
         <?php include 'add.php'; ?>
