@@ -19,9 +19,9 @@ $result = mysqli_query($conn, "SELECT * FROM departments"); ?>
 
         <div class="main flex flex-col items-center w-full gap-8">
 
-            <h1 class="text-5xl">departments</h1>
+            <h1 class="text-4xl font-bold text-gray-800 mb-8">Departments</h1>
 
-            <?php include 'add.php'; ?>
+            
 
             <div class="w-full mt-6 overflow-hidden rounded-lg border border-gray-700">
                 <table class="w-full border-collapse text-sm text-gray-200 bg-[#2b2b2b]">
@@ -58,7 +58,7 @@ $result = mysqli_query($conn, "SELECT * FROM departments"); ?>
                     </tbody>
                 </table>
             </div>
-
+                            <?php include 'add.php'; ?>
         </div>
     </div>
 

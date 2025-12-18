@@ -22,9 +22,9 @@ $result = mysqli_query($conn, "SELECT * FROM patients"); ?>
 
         <div class="main flex flex-col items-center gap-8">
             
-            <h1 class="text-4xl font-bold text-gray-900 mb-8 float-start">Patients</h1>
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 float-start">Patients</h1>
 
-            <?php include 'add.php'; ?>
+            
             <div class="w-full min-w-[100%] mt-6 overflow-hidden rounded-lg border border-gray-700">
                 <table class="w-full border-collapse text-sm text-gray-200 bg-[#2b2b2b]">
                     <thead class="bg-[#333]">
@@ -61,7 +61,7 @@ $result = mysqli_query($conn, "SELECT * FROM patients"); ?>
                 </table>
             </div>
 
-
+            <?php include 'add.php'; ?>
 
         </div>
 
