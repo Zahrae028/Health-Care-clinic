@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         mysqli_stmt_bind_param($stmt, "sss", $name, $email, $phone);
         mysqli_stmt_execute($stmt); 
-        
+
         echo "<script>location.href = 'list.php'</script>";
         echo "Patient added successfully";
     } else {
@@ -25,11 +25,48 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<h2>Add Patient</h2>
 
-<form action="" method="POST" >
-    <input name="name" placeholder="Name" required><br><br>
-    <input name="email" placeholder="Email"><br><br>
-    <input name="phone" placeholder="Phone"><br><br>
-    <button>Add Patient</button>
-</form>
+    <div class="w-full max-w-md bg-[#2b2b2b] border border-gray-700 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-200 mb-6 text-center">
+            Add Patient
+        </h2>
+
+        <form action="" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-sm text-gray-400 mb-1">Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    required
+                    class="w-full rounded-md bg-[#333] border border-gray-600 px-3 py-2 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+            </div>
+
+            <div>
+                <label class="block text-sm text-gray-400 mb-1">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    class="w-full rounded-md bg-[#333] border border-gray-600 px-3 py-2 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+            </div>
+
+            <div>
+                <label class="block text-sm text-gray-400 mb-1">Phone</label>
+                <input
+                    type="text"
+                    name="phone"
+                    class="w-full rounded-md bg-[#333] border border-gray-600 px-3 py-2 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-medium transition"
+            >
+                Add Patient
+            </button>
+        </form>
+    </div>
+
+

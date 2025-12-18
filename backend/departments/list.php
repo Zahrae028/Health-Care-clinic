@@ -13,40 +13,55 @@ $result = mysqli_query($conn, "SELECT * FROM departments"); ?>
 </head>
 
 <body>
-    
-    <div class="container">
-        <?php  include '../includes/sidebar.php'; ?>
-        
-        
-        <div class="main">
-        
-        <h1>departments</h1>
-<?php include 'add.php'; ?>
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
 
-<?php while ($row = mysqli_fetch_assoc($result)) : ?>
-    <tr>
-        <td><?= htmlspecialchars($row['id']) ?></td>
-        <td><?= htmlspecialchars($row['name']) ?></td>
-        <td><?= $row['description'] ?? 'no description'; ?></td>
-        <td> <a href='delete.php?id=<?= $row['id']?>'
-                                           class='inline-block text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-1 shadow-md transition-all'>
-                                           Delete
-                                        </a></td>
-    </tr>
-<?php endwhile; ?>
+    <div class="container w-full flex">
+        <?php include '../includes/sidebar.php'; ?>
 
-</table>
+        <div class="main flex flex-col items-center w-full gap-8">
 
+            <h1 class="text-5xl">departments</h1>
 
+            <?php include 'add.php'; ?>
+
+            <div class="w-full mt-6 overflow-hidden rounded-lg border border-gray-700">
+                <table class="w-full border-collapse text-sm text-gray-200 bg-[#2b2b2b]">
+                    <thead class="bg-[#333]">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-semibold">Id</th>
+                            <th class="px-4 py-3 text-left font-semibold">Name</th>
+                            <th class="px-4 py-3 text-left font-semibold">Description</th>
+                            <th class="px-4 py-3 text-left font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-700">
+                        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                            <tr class="hover:bg-gray-700/40 transition">
+                                <td class="px-4 py-3"><?= htmlspecialchars($row['id']) ?></td>
+                                <td class="px-4 py-3"><?= htmlspecialchars($row['name']) ?></td>
+                                <td class="px-4 py-3">
+                                    <?= $row['description'] ?: 'No description'; ?>
+                                </td>
+                                 <td class="px-4 py-3 flex gap-3">
+                                       <a href="edit.php?id=<?= $row['id'] ?>"
+                                        class="text-blue-400 hover:text-blue-500 font-medium">
+                                        Edit
+                                    </a>
+                                    <a href="delete.php?id=<?= $row['id'] ?>"
+                                       class="text-red-400 hover:text-red-500 font-medium"
+                                       onclick="return confirm('Delete this department?')">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 
-</div>
-
 </body>
+
 </html>

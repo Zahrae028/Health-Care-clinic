@@ -1,5 +1,21 @@
 <?php
-require_once '../../config/database.php';
+require_once '../../config/database.php'; 
+
+$conn = db_connect();
+
+$id = $_GET['id'];
+
+$stmt = mysqli_prepare(
+    $conn,
+    "SELECT * FROM doctors WHERE id = ?"
+);
+
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt); 
+$row = mysqli_fetch_assoc($result);
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name  = trim($_POST['name']);
@@ -7,11 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $department_id = $_POST['department_id'];
 
     if ($name !== "") {
-        $conn = db_connect();
-
         $stmt = mysqli_prepare(
             $conn,
-            "INSERT INTO doctors (name, email, department_id) VALUES (?, ?, ?)"
+            "UPDATE doctors SET name = ?, email = ?, department_id = ? WHERE id = $id;"
         );
 
         mysqli_stmt_bind_param($stmt, "ssi", $name, $email, $department_id);
@@ -24,12 +38,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Name is required";
     }
 }
+// print_r($row);
+
 ?>
+<!DOCTYPE html>
+<html>
 
-
+<head>
+    <title>doctors</title>
+    <?php include '../includes/style.php'; ?>
+</head>
+<body>
+<div class="min-h-screen flex items-center justify-center bg-[#1e1e1e]">
     <div class="w-full max-w-md bg-[#2b2b2b] border border-gray-700 rounded-lg p-6">
         <h2 class="text-xl font-semibold text-gray-200 mb-6 text-center">
-            Add Doctor
+            Edit Doctor
         </h2>
 
         <form action="" method="POST" class="space-y-4">
@@ -38,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input
                     type="text"
                     name="name"
+                    value="<?= htmlspecialchars($row['name']) ?>"
                     required
                     class="w-full rounded-md bg-[#333] border border-gray-600 px-3 py-2 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
@@ -48,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input
                     type="email"
                     name="email"
+                    value="<?= htmlspecialchars($row['email']) ?>"
                     class="w-full rounded-md bg-[#333] border border-gray-600 px-3 py-2 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
             </div>
@@ -57,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input
                     type="number"
                     name="department_id"
+                    value="<?= htmlspecialchars($row['department_id']) ?>"
                     class="w-full rounded-md bg-[#333] border border-gray-600 px-3 py-2 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
             </div>
@@ -65,9 +91,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 type="submit"
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-medium transition"
             >
-                Add Doctor
+                Update Doctor
             </button>
         </form>
     </div>
-
-
+</div>
+</body>
+</html>

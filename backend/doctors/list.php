@@ -14,44 +14,52 @@ $result = mysqli_query($conn, "SELECT * FROM doctors"); ?>
 
 <body>
 
-    <div class="container">
+    <div class="container  w-full flex">
         <?php include '../includes/sidebar.php'; ?>
 
 
-        <div class="main">
+        <div class="main flex flex-col items-center w-full gap-8">
 
-            <h1>doctors</h1>
+            <h1 class="text-5xl">doctors</h1>
 
-                <?php include 'add.php'; ?>
+            <?php include 'add.php'; ?>
 
-            <table border="1" cellpadding="10">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Department id</th>
-                </tr>
+            <div class="w-full mt-6 overflow-hidden rounded-lg border border-gray-700">
+                <table class="w-full border-collapse text-sm self-center text-gray-200 bg-[#2b2b2b] ">
+                    <thead class="bg-[#333]">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-semibold">Id</th>
+                            <th class="px-4 py-3 text-left font-semibold">Name</th>
+                            <th class="px-4 py-3 text-left font-semibold">Email</th>
+                            <th class="px-4 py-3 text-left font-semibold">Department</th>
+                            <th class="px-4 py-3 text-left font-semibold">Actions</th>
+                        </tr>
+                    </thead>
 
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['id']) ?></td>
-                        <td><?= htmlspecialchars($row['name']) ?></td>
-                        <td><?= htmlspecialchars($row['email']) ?></td>
-                        <td><?= htmlspecialchars($row['department_id']) ?></td>
-                        <td>
-                            <a href="edit.php?id=<?= $row['id'] ?>" class="text-blue-400 hover:text-blue-500 font-medium">
-                                Edit
-                            </a>
-                            
-                            <a href='delete.php?id=<?= $row['id'] ?>'
-                                class='inline-block text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-1 shadow-md transition-all'>
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
+                    <tbody class="divide-y divide-gray-700">
+                        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                            <tr class="hover:bg-gray-700/40 transition">
+                                <td class="px-4 py-3"><?= htmlspecialchars($row['id']) ?></td>
+                                <td class="px-4 py-3"><?= htmlspecialchars($row['name']) ?></td>
+                                <td class="px-4 py-3"><?= htmlspecialchars($row['email']) ?></td>
+                                <td class="px-4 py-3"><?= htmlspecialchars($row['department_id']) ?></td>
+                                <td class="px-4 py-3 flex gap-3">
+                                    <a href="edit.php?id=<?= $row['id'] ?>"
+                                        class="text-blue-400 hover:text-blue-500 font-medium">
+                                        Edit
+                                    </a>
+                                    <a href="delete.php?id=<?= $row['id'] ?>"
+                                        class="text-red-400 hover:text-red-500 font-medium"
+                                        onclick="return confirm('Delete this doctor?')">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
 
-            </table>
 
 
         </div>
